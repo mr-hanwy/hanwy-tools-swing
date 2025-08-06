@@ -1,28 +1,19 @@
 package cn.hanwy.core.ui.provider;
 
-import cn.hanwy.core.ui.component.AppMenuItem;
-
-import java.awt.*;
+import cn.hanwy.core.ui.component.MenuItem;
 
 /**
  * 菜单项组件提供者
  *
  * @author hanwy
- * @date 2025/8/4
+ * @date 2025/8/7
+ * @see #provide()
  */
-public abstract class MenuItemProvider {
-    private final AppMenuItem menuItem;
-
-    public MenuItemProvider() {
-        menuItem = new AppMenuItem(text());
-    }
-
-    public AppMenuItem provide(Component owner) {
-        menuItem.addActionListener(e -> actionListener(owner));
-        return menuItem;
-    }
-
-    public abstract String text();
-
-    public abstract void actionListener(Component owner);
+public interface MenuItemProvider {
+    /**
+     * 菜单项组件提供方法
+     *
+     * @return {@link MenuItem} - 菜单项组件
+     */
+    MenuItem provide();
 }

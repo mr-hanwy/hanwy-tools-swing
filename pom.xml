@@ -53,7 +53,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>cn.hanwy.core.HanwyToolsSwingApplication</mainClass>
+          <mainClass>cn.hanwy.core.HanwyToolsApp</mainClass>
           <skip>true</skip>
         </configuration>
         <executions>

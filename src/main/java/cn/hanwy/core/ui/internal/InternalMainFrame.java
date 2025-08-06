@@ -1,9 +1,7 @@
 package cn.hanwy.core.ui.internal;
 
-import cn.hanwy.core.ui.component.AppFrame;
-import cn.hanwy.core.ui.component.AppLabel;
-import cn.hanwy.core.ui.component.AppPanel;
-import cn.hanwy.core.ui.provider.MenuBarProvider;
+import cn.hanwy.core.ui.component.Frame;
+import cn.hanwy.core.ui.provider.MainFrameProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,37 +13,44 @@ import java.awt.*;
  * 默认主窗体
  *
  * @author hanwy
- * @date 2025/8/4
+ * @date 2025/8/7
  */
 @Component
-public class InternalMainFrame extends AppFrame {
+public class InternalMainFrame extends Frame implements MainFrameProvider {
+    /**
+     * 读取配置文件中的 app.title
+     */
     @Value("${app.title}")
-    String appTitle;
+    private String appTitle;
 
-    public InternalMainFrame(MenuBarProvider menuBarProvider) {
-        this.setPreferredSize(new Dimension(800, 600));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.setJMenuBar(menuBarProvider.provide(this));
-    }
-
+    /**
+     * 设置窗体标题文本
+     *
+     * @return {@link String} - 窗体标题文本
+     */
+    @Override
     @PostConstruct
-    public void init() {
-        this.setTitle(appTitle);
-        super.init();
+    protected String title() {
+        return appTitle;
     }
 
     /**
-     * 初始化 UI
+     * 初始化用户界面
      */
     @Override
-    public void initUI() {
-        AppPanel panel = new AppPanel(new BorderLayout());
+    protected void initUI() {
+        setPreferredSize(new Dimension(800, 600));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
-        AppLabel welcomeLabel = new AppLabel("Welcome to " + appTitle, SwingConstants.CENTER);
-        welcomeLabel.setFont(welcomeLabel.getFont().deriveFont(Font.BOLD, 24));
-        panel.add(welcomeLabel, BorderLayout.CENTER);
-
-        add(panel, BorderLayout.CENTER);
+    /**
+     * 窗体组件提供方法
+     *
+     * @return {@link Frame} - 窗体组件
+     */
+    @Override
+    public Frame provide() {
+        build();
+        return this;
     }
 }
