@@ -2,6 +2,8 @@ package cn.hanwy.core.ui.provider;
 
 import cn.hanwy.core.ui.component.MenuItem;
 
+import java.awt.*;
+
 /**
  * 菜单项组件提供者
  *
@@ -11,9 +13,11 @@ import cn.hanwy.core.ui.component.MenuItem;
  */
 public interface MenuItemProvider {
     /**
-     * 菜单项组件提供方法
+     * 提供组件的方法
+     *
+     * @param relative 相对组件
      *
      * @return {@link MenuItem} - 菜单项组件
      */
-    MenuItem provide();
+    MenuItem provide(Component relative);
 }

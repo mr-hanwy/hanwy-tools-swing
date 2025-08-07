@@ -1,5 +1,7 @@
 package cn.hanwy.core.ui.component;
 
+import cn.hanwy.core.ui.provider.MenuBarProvider;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,6 +12,12 @@ import java.awt.*;
  * @date 2025/8/7
  */
 public abstract class Frame extends JFrame {
+    private final MenuBarProvider menuBarProvider;
+
+    protected Frame(MenuBarProvider menuBarProvider) {
+        this.menuBarProvider = menuBarProvider;
+    }
+
     /**
      * 设置窗体标题文本
      *
@@ -26,7 +34,9 @@ public abstract class Frame extends JFrame {
      * 构建窗体组件
      */
     protected void build() {
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle(title());
+        setJMenuBar(menuBarProvider.provide(this));
         setContentPane(new Panel(new BorderLayout()));
 
         initUI();

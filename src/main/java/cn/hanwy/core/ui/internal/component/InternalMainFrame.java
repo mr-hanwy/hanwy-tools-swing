@@ -1,6 +1,7 @@
-package cn.hanwy.core.ui.internal;
+package cn.hanwy.core.ui.internal.component;
 
 import cn.hanwy.core.ui.component.Frame;
+import cn.hanwy.core.ui.provider.MainFrameMenuBarProvider;
 import cn.hanwy.core.ui.provider.MainFrameProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,10 @@ public class InternalMainFrame extends Frame implements MainFrameProvider {
      */
     @Value("${app.title}")
     private String appTitle;
+
+    protected InternalMainFrame(MainFrameMenuBarProvider mainFrameMenuBarProvider) {
+        super(mainFrameMenuBarProvider);
+    }
 
     /**
      * 设置窗体标题文本

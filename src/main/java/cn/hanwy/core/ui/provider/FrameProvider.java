@@ -11,7 +11,7 @@ import cn.hanwy.core.ui.component.Frame;
  */
 public interface FrameProvider {
     /**
-     * 窗体组件提供方法
+     * 提供组件的方法
      *
      * @return {@link Frame} - 窗体组件
      */
