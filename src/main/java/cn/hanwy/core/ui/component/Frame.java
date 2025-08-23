@@ -10,18 +10,31 @@ import java.awt.*;
  *
  * @author hanwy
  * @date 2025/8/7
+ * @see #Frame(MenuBarProvider)
+ * @see #title()
+ * @see #initUI()
+ * @see #build()
+ * @see #show(Component)
  */
 public abstract class Frame extends JFrame {
+    /**
+     * 菜单栏组件提供者
+     */
     private final MenuBarProvider menuBarProvider;
 
+    /**
+     * 构造方法，对组件进行初始化
+     *
+     * @param menuBarProvider 菜单栏组件提供者
+     */
     protected Frame(MenuBarProvider menuBarProvider) {
         this.menuBarProvider = menuBarProvider;
     }
 
     /**
-     * 设置窗体标题文本
+     * 设置标题文本
      *
-     * @return {@link String} - 窗体标题文本
+     * @return {@link String} - 标题文本
      */
     protected abstract String title();
 
@@ -31,7 +44,7 @@ public abstract class Frame extends JFrame {
     protected abstract void initUI();
 
     /**
-     * 构建窗体组件
+     * 构建组件
      */
     protected void build() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
